@@ -8,6 +8,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import tarakanova.base.BaseTest;
 import tarakanova.pages.AppointmentPage;
+import tarakanova.pages.ConfirmationPage;
 import tarakanova.pages.HomePage;
 import tarakanova.pages.LoginPage;
 
@@ -29,10 +30,18 @@ public class AppointmentTest extends BaseTest {
         appointmentPage.clickReadmissionCheckbox();
         appointmentPage.selectMedicaid();
         appointmentPage.enterVisitDate("30/05/2026");
-        appointmentPage.enterComment("Looking forward to my appointment!");
+        appointmentPage.enterComment("First automation appointment test");
         appointmentPage.clickBookAppointment();
         WebElement goHomeButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".btn-default")));
-
         Assert.assertTrue(goHomeButton.isDisplayed());
+
+        ConfirmationPage confirmationPage = new ConfirmationPage(driver);
+
+        Assert.assertEquals(confirmationPage.getPageTitle(), "Appointment Confirmation");
+        Assert.assertEquals(confirmationPage.getFacility(), "Hongkong CURA Healthcare Center");
+        Assert.assertEquals(confirmationPage.getReadmission(), "Yes");
+        Assert.assertEquals(confirmationPage.getHealthcareProgram(), "Medicaid");
+        Assert.assertEquals(confirmationPage.getVisitDate(), "30/05/2026");
+        Assert.assertEquals(confirmationPage.getComment(), "First automation appointment test");
     }
 }
