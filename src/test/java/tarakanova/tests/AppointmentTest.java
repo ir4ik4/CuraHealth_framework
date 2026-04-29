@@ -22,10 +22,9 @@ public class AppointmentTest extends BaseTest {
         HomePage homePage = new HomePage(driver);
         homePage.clickMakeAppointment();
 
-        LoginPage loginPage = new LoginPage(driver);
-        loginPage.login("John Doe", "ThisIsNotAPassword");
+        LoginPage loginPage =  homePage.clickMakeAppointment();
+        AppointmentPage appointmentPage = loginPage.login("John Doe", "ThisIsNotAPassword");
 
-        AppointmentPage appointmentPage = new AppointmentPage(driver);
         appointmentPage.selectFacility("Hongkong CURA Healthcare Center");
         appointmentPage.clickReadmissionCheckbox();
         appointmentPage.selectMedicaid();

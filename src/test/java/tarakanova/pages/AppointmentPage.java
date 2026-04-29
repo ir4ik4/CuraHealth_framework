@@ -37,8 +37,9 @@ public class AppointmentPage extends BasePage {
     public void enterComment(String comment){
         type(commentField, comment);
     }
-    public void clickBookAppointment() {
+    public ConfirmationPage clickBookAppointment() {
        click(bookAppointmentButton);
+       return new ConfirmationPage(driver);
     }
 
 }

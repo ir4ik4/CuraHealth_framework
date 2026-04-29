@@ -39,8 +39,4 @@ public class ConfirmationPage extends BasePage {
         return getText(comments);
     }
 
-
-
-
-
 }

@@ -13,9 +13,8 @@ public class HomeTest extends BaseTest {
     @Test
     public void userShouldLogin(){
         HomePage homePage = new HomePage(driver);
-        homePage.clickMakeAppointment();
 
-        LoginPage loginPage = new LoginPage(driver);
+        LoginPage loginPage = homePage.clickMakeAppointment();
         loginPage.login("John Doe", "ThisIsNotAPassword");
         System.out.println(driver.getCurrentUrl());
 
