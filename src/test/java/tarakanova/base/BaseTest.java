@@ -18,6 +18,10 @@ public class BaseTest {
     protected static final Logger logger =
             LogManager.getLogger(BaseTest.class);
 
+    public WebDriver getDriver(){
+        return driver;
+    }
+
 
     @BeforeMethod
     public void setUp() {

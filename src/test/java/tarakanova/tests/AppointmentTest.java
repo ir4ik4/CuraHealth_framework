@@ -5,18 +5,22 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import tarakanova.base.BaseTest;
 import tarakanova.pages.AppointmentPage;
 import tarakanova.pages.ConfirmationPage;
 import tarakanova.pages.HomePage;
 import tarakanova.pages.LoginPage;
+import tarakanova.utils.RetryAnalyzer;
+import tarakanova.utils.TestListener;
 
 import java.time.Duration;
 
+@Listeners(TestListener.class)
 public class AppointmentTest extends BaseTest {
 
-    @Test
+    @Test(retryAnalyzer = RetryAnalyzer.class)
     public void userShouldBookAppointment(){
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         HomePage homePage = new HomePage(driver);

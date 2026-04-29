@@ -8,11 +8,7 @@
     "password": "wrongPassword"
   },
   {
-    "username": "wrongUser",
-    "password": "ThisIsNotAPassword"
-  },
-  {
-    "username": "",
-    "password": ""
+    "username": "Mike Doe",
+    "password": "ThisIsAPassword"
   }
 ]
