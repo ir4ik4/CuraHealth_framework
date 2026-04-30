@@ -1,9 +1,5 @@
 package tarakanova.tests;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import tarakanova.base.BaseTest;
@@ -13,15 +9,12 @@ import tarakanova.pages.HomePage;
 import tarakanova.pages.LoginPage;
 import tarakanova.utils.RetryAnalyzer;
 
-import java.time.Duration;
 
 public class AppointmentTest extends BaseTest {
 
     @Test(retryAnalyzer = RetryAnalyzer.class)
     public void userShouldBookAppointment(){
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         HomePage homePage = new HomePage(driver);
-        homePage.clickMakeAppointment();
 
         LoginPage loginPage =  homePage.clickMakeAppointment();
         AppointmentPage appointmentPage = loginPage.login("John Doe", "ThisIsNotAPassword");
@@ -31,13 +24,10 @@ public class AppointmentTest extends BaseTest {
         appointmentPage.selectMedicaid();
         appointmentPage.enterVisitDate("30/05/2026");
         appointmentPage.enterComment("First automation appointment test");
-        appointmentPage.clickBookAppointment();
-        WebElement goHomeButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".btn-default")));
-        Assert.assertTrue(goHomeButton.isDisplayed());
 
-        ConfirmationPage confirmationPage = new ConfirmationPage(driver);
+        ConfirmationPage confirmationPage = appointmentPage.clickBookAppointment();
 
-        Assert.assertEquals(confirmationPage.getPageTitle(), "Make Appointment");
+        Assert.assertEquals(confirmationPage.getPageTitle(), "Appointment Confirmation");
         Assert.assertEquals(confirmationPage.getFacility(), "Hongkong CURA Healthcare Center");
         Assert.assertEquals(confirmationPage.getReadmission(), "Yes");
         Assert.assertEquals(confirmationPage.getHealthcareProgram(), "Medicaid");

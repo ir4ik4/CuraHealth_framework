@@ -1,17 +1,15 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 
-<suite name="CURA Health Suite">
+<suite name="CURA Smoke Suite">
 
     <listeners>
         <listener class-name="tarakanova.utils.TestListener"/>
     </listeners>
 
-    <test name="All Tests">
+    <test name="Smoke Tests">
         <classes>
-            <class name="tarakanova.tests.HomeTest"/>
             <class name="tarakanova.tests.LoginTest"/>
             <class name="tarakanova.tests.AppointmentTest"/>
-            <class name="tarakanova.tests.LogoutTest"/>
         </classes>
     </test>
 

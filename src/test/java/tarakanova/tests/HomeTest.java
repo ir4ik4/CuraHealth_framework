@@ -10,7 +10,7 @@ import tarakanova.utils.RetryAnalyzer;
 
 public class HomeTest extends BaseTest {
 
-    @Test(retryAnalyzer = RetryAnalyzer.class)
+    @Test
     public void userShouldLogin(){
         HomePage homePage = new HomePage(driver);
 

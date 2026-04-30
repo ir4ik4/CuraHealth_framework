@@ -17,10 +17,24 @@ public class LoginPage extends BasePage {
     private final By passwordField = By.id("txt-password");
     private final By loginButton = By.id("btn-login");
     private final By errorMessage = By.cssSelector(".lead.text-danger");
+    private final By bookAppointmentButton = By.id("btn-book-appointment");
 
     public String getErrorMessage() {
         String loginFailText = driver.findElement(errorMessage).getText().split("!")[0];
         return loginFailText;
+    }
+
+    public void loginWithInvalidCredentials(String username, String password) {
+        logger.info("Entering invalid username");
+        type(usernameField, username);
+
+        logger.info("Entering invalid password");
+        type(passwordField, password);
+
+        logger.info("Clicking login button");
+        click(loginButton);
+
+        waitForVisibility(errorMessage);
     }
 
     public AppointmentPage login(String username, String password) {
@@ -30,6 +44,7 @@ public class LoginPage extends BasePage {
         type(passwordField, password);
         logger.info("Clicking login button");
         click(loginButton);
+        waitForVisibility(bookAppointmentButton);
         return new AppointmentPage(driver);
     }
 

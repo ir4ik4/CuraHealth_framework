@@ -18,6 +18,8 @@ public class AppointmentPage extends BasePage {
     private final By visitDateField = By.id("txt_visit_date");
     private final By commentField = By.id("txt_comment");
     private final By bookAppointmentButton = By.id("btn-book-appointment");
+    private final By confirmationTitle =
+            By.xpath("//h2[text()='Appointment Confirmation']");
 
 
     public void selectFacility(String facility) {
@@ -39,7 +41,8 @@ public class AppointmentPage extends BasePage {
     }
     public ConfirmationPage clickBookAppointment() {
        click(bookAppointmentButton);
-       return new ConfirmationPage(driver);
+        waitForVisibility(confirmationTitle);
+        return new ConfirmationPage(driver);
     }
 
 }

@@ -12,13 +12,16 @@ import java.io.FileNotFoundException;
 
 public class LoginTest extends BaseTest {
 
-    @Test(dataProvider = "invalidCredentials", retryAnalyzer = RetryAnalyzer.class)
+    @Test(dataProvider = "invalidCredentials")
     public void loginWithInvalidCredentials(String username, String password) {
         HomePage homePage = new HomePage(driver);
+
         LoginPage loginPage = homePage.clickMakeAppointment();
-       loginPage.login(username, password);
+
+        loginPage.loginWithInvalidCredentials(username, password);
+
         Assert.assertEquals(loginPage.getErrorMessage(), "Login failed");
-     }
+    }
 
      @DataProvider(name = "invalidCredentials")
     public Object[][] invalidCredentials() throws FileNotFoundException {

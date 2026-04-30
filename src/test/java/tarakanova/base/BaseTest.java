@@ -18,7 +18,7 @@ public class BaseTest {
     protected static final Logger logger =
             LogManager.getLogger(BaseTest.class);
 
-    public WebDriver getDriver(){
+    public WebDriver getDriver() {
         return driver;
     }
 
@@ -47,9 +47,13 @@ public class BaseTest {
         driver.get("https://katalon-demo-cura.herokuapp.com/");
     }
 
-  @AfterMethod
-   public void tearDown() {
-      logger.info("Closing browser");
-       driver.quit();
-}
+    @AfterMethod
+    public void tearDown() {
+        logger.info("Closing browser");
+
+        if (driver != null) {
+            driver.quit();
+            driver = null;
+        }
+    }
 }
