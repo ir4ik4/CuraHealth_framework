@@ -14,23 +14,23 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
+import static java.lang.reflect.Array.set;
+
 @Listeners(TestListener.class)
 public class TestListener implements ITestListener {
 
-    private ExtentTest test;
+    private static ThreadLocal<ExtentTest> test = new ThreadLocal<>();
 
     @Override
     public void onTestStart(ITestResult result) {
-        test = ExtentReportManager
-                .getReport()
-                .createTest(result.getName());
-
-        test.info("Test started");
+        test.set(ExtentReportManager.getReport()
+                        .createTest(result.getName()));
+        test.get().info("Test started");
     }
 
     @Override
     public void onTestSuccess(ITestResult result) {
-        test.pass("Test passed");
+        test.get().pass("Test passed");
     }
 
     @Override

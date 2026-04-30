@@ -5,7 +5,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import tarakanova.base.BaseTest;
 import tarakanova.pages.AppointmentPage;
@@ -13,11 +12,9 @@ import tarakanova.pages.ConfirmationPage;
 import tarakanova.pages.HomePage;
 import tarakanova.pages.LoginPage;
 import tarakanova.utils.RetryAnalyzer;
-import tarakanova.utils.TestListener;
 
 import java.time.Duration;
 
-@Listeners(TestListener.class)
 public class AppointmentTest extends BaseTest {
 
     @Test(retryAnalyzer = RetryAnalyzer.class)
@@ -40,7 +37,7 @@ public class AppointmentTest extends BaseTest {
 
         ConfirmationPage confirmationPage = new ConfirmationPage(driver);
 
-        Assert.assertEquals(confirmationPage.getPageTitle(), "Appointment Confirmation");
+        Assert.assertEquals(confirmationPage.getPageTitle(), "Make Appointment");
         Assert.assertEquals(confirmationPage.getFacility(), "Hongkong CURA Healthcare Center");
         Assert.assertEquals(confirmationPage.getReadmission(), "Yes");
         Assert.assertEquals(confirmationPage.getHealthcareProgram(), "Medicaid");

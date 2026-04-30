@@ -1,18 +1,16 @@
 package tarakanova.tests;
 
 import org.testng.Assert;
-import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import tarakanova.base.BaseTest;
 import tarakanova.pages.HomePage;
 import tarakanova.pages.LoginPage;
-import tarakanova.utils.TestListener;
+import tarakanova.utils.RetryAnalyzer;
 
 
-@Listeners(TestListener.class)
 public class HomeTest extends BaseTest {
 
-    @Test
+    @Test(retryAnalyzer = RetryAnalyzer.class)
     public void userShouldLogin(){
         HomePage homePage = new HomePage(driver);
 
